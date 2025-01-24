@@ -1,18 +1,18 @@
 import userSchema from "./user.model.js";
 
 
-export async function addUser(req,res){
-    const {name,email,phone}=req.body;
-    console.log({name,email,phone});
+export async function addTodo(req,res){
+    const {task}=req.body;
+    console.log({task});
     
-    await userSchema.create({name,email,phone}).then(()=>{
-        res.status(200).send({msg:"successfully created"})
+    await userSchema.create({task}).then(()=>{
+        res.status(201).send({msg:"successfully created"})
     }).catch((error)=>{
         res.status(500).send({error})
     })
 }
 
-export async function getUser(req,res){
+export async function getTodo(req,res){
     try {
         const detail = await userSchema.find();
         console.log(detail);
@@ -23,7 +23,7 @@ export async function getUser(req,res){
     }
 }
 
-export async function deleteDetails(req, res) {
+export async function deleteTodo(req, res) {
     const {_id } = req.params;
         await userSchema.deleteOne({_id})
         .then(()=>{
@@ -35,12 +35,12 @@ export async function deleteDetails(req, res) {
    
 }
 
-export async function updateDetail(req,res){
+export async function updateTodo(req,res){
     const {_id}=req.params;
-    const {name,email,phone}=req.body;
-    // console.log({name,email,phone});
+    const {task}=req.body;
+    // console.log({task});
     
-    await userSchema.findByIdAndUpdate(_id,{name,email,phone}).then(()=>{
+    await userSchema.findByIdAndUpdate(_id,{task}).then(()=>{
         res.status(200).send({msg:"successfully updated!"})
     }).catch((error)=>{
         res.status(500).send({error})

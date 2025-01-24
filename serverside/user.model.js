@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    name:{type:String, required:true},
-    email:{type:String, required:true},
-    phone:{type:String, required:true},
+    task:{type:String, required:true},
 });
 
-export default mongoose.model.user||mongoose.model("user",userSchema)
+export default mongoose.model.tasks||mongoose.model("tasks",userSchema)
