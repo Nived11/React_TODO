@@ -49,8 +49,8 @@ function App() {
 
   const updateTask = async (_id) => {
     try {
-      const taskToUpdate = todo.find((task) => task._id === _id);
-      const res = await axios.put(`${ApiPath()}/updatetodo/${_id}`, taskToUpdate);
+      const Todo = todo.find((task) => task._id === _id);
+      const res = await axios.put(`${ApiPath()}/updatetodo/${_id}`, Todo);
       if (res.status === 200) {
         alert(res.data.msg);
         setEditStates((prevStates) => ({...prevStates,[_id]: false,}));
@@ -81,7 +81,11 @@ function App() {
         <button onClick={addTask}>Add</button>
       </div>
       <ul>
-        {todo.map((item) => (
+        {todo   
+        
+        
+        
+        .map((item) => (
           <li key={item._id}>
             <div className="task-content">
               <input className="tasks" type="text" value={item.task} disabled={!editStates[item._id]} 
